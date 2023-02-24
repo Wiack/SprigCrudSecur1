@@ -16,7 +16,7 @@
         <a class="navbar-brand">
             <b th:text="${user.getEmail()}">VALUE</b>
             <text>with roles:</text>
-            <text th:each="role:${user.getRoles()}" th:text="${role.getName()} +' '">VALUE</text>
+            <text th:text="${user.toStringAllRoles()}"></text>
         </a>
         <a class="navbar-brand" href="/logout">
             <text class="text-secondary">Logout</text>
@@ -77,10 +77,12 @@
                                     <td th:text="${usr.getLastName()}"></td>
                                     <td th:text="${usr.getAge()}"></td>
                                     <td th:text="${usr.getEmail()}"></td>
-                                    <td>
-                                        <text th:each="role:${usr.getRoles()}"
-                                              th:text="${role.getName()} + ' '"></text>
-                                    </td>
+                                    <td th:text="${usr.toStringAllRoles()}"></td>
+<!--                                    <td>-->
+<!--                                        <text th:each="role:${usr.getRoles()}"-->
+<!--                                              th:text="${role.getShortName()} + ' '"></text>-->
+<!--                                    </td>-->
+
                                     <td>
                                         <button type="button" class="btn btn-info" data-toggle="modal"
                                                 data-target="#edit" th:data-target="${'#edit'+usr.id}">Edit
@@ -151,7 +153,7 @@
                                                                     <option th:each="role: ${allRoles}"
                                                                             th:value="${role.getId()}"
                                                                             th:selected="${usr.getRoles().contains(role)}">
-                                                                        <th:block th:text="${role.getName()}">
+                                                                        <th:block th:text="${role.getShortName()}">
                                                                         </th:block>
                                                                     </option>
                                                                 </select>
@@ -234,7 +236,7 @@
                                                                     <option th:each="role: ${allRoles}"
                                                                             th:value="${role.getId()}"
                                                                             th:selected="${usr.getRoles().contains(role)}">
-                                                                        <th:block th:text="${role.getName()}">
+                                                                        <th:block th:text="${role.getShortName()}">
                                                                         </th:block>
                                                                     </option>
                                                                 </select>
@@ -307,7 +309,7 @@
                                         <select type="text" class="custom-select" th:field="*{roles}" id="roles"
                                                 multiple="multiple" size="2">
                                             <option th:each="role : ${allRoles}" th:value="${role.getId()}"
-                                                    th:text="${role.getName()}"></option>
+                                                    th:text="${role.getShortName()}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group text-center">

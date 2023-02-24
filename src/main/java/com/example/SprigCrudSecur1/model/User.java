@@ -149,4 +149,14 @@ public class User implements UserDetails {
                 ", roles=" + roles +
                 '}';
     }
+
+    public String toStringAllRoles(){
+        String result = "";
+        for (Role role: roles){
+            if (role.getShortName().equals("ADMIN")) {
+                result = role.getShortName() + " USER";
+            } else {result = role.getShortName();}
+        }
+        return result;
+    }
 }

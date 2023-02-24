@@ -17,7 +17,7 @@
         <a class="navbar-brand">
             <b th:text="${user.getEmail()}">VALUE</b>
             <text>with roles:</text>
-            <text th:each="role:${user.getRoles()}" th:text="${role.getShortName()} +' '">VALUE</text>
+            <text th:text="${user.toStringAllRoles()}"></text>
         </a>
         <a class="navbar-brand" href="/logout">
             <text class="text-secondary">Logout</text>
@@ -65,9 +65,10 @@
                             <td th:text="${user.getLastName()}"></td>
                             <td th:text="${user.getAge()}"></td>
                             <td th:text="${user.getEmail()}"></td>
-                            <td>
-                                <text th:each="role:${user.getRoles()}" th:text="${role.getShortName()}+' '"></text>
-                            </td>
+                            <td th:text="${user.toStringAllRoles()}"></td>
+<!--                            <td>-->
+<!--                                <text th:each="role:${user.getRoles()}" th:text="${role.getShortName()}+' '"></text>-->
+<!--                            </td>-->
                         </tr>
                         </tbody>
                     </table>
